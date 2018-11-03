@@ -1,0 +1,10 @@
+type UserLogin {
+    id: ID!
+    active: boolean!
+    userId: String!
+}
+
+input NewUserLogin {
+    userId: String!
+    password: String!
+}
