@@ -1,4 +1,4 @@
-package erp_microservices.e_commerce.endpoints.graphql;
+package erp_microservices.e_commerce.endpoints.graphql.types;
 
 import java.util.Objects;
 
