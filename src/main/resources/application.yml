@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: e_commerce-service-endpoint-graphql
+graphql:
+  servlet:
+    mapping: /graphql
+    enabled: true
+    tracing-enabled: true
+    actuator-metrics: true
