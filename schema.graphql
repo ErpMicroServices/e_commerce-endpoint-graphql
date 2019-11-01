@@ -1,9 +1,25 @@
 # This file was generated based on ".graphqlconfig". Do not edit manually.
 
 schema {
-	query: query
+	query: Query
+	mutation: Mutation
 }
 
-type query {
-	test: String
+type Mutation {
+	login(credentials: NewUserLogin!): UserLogin
+}
+
+type Query {
+	userById(id: ID!): UserLogin
+}
+
+type UserLogin {
+	active: String!
+	id: ID!
+	userId: String!
+}
+
+input NewUserLogin {
+	password: String!
+	userId: String!
 }

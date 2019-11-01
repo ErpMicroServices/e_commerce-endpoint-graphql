@@ -1,0 +1,19 @@
+type Query {
+	userById(id: ID!): UserLogin
+}
+
+type Mutation {
+	login(credentials: NewUserLogin!): UserLogin
+}
+
+type UserLogin {
+	id: ID!
+	active: String!
+	userId: String!
+}
+
+input NewUserLogin {
+	userId: String!
+	password: String!
+}
+
