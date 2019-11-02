@@ -1,5 +1,6 @@
 type Query {
 	userById(id: ID!): UserLogin
+	contentForWebAddress(webAddress: WebAddress!): [WebContent]!
 }
 
 type Mutation {
@@ -11,6 +12,17 @@ type UserLogin {
 	active: String!
 	userId: String!
 }
+
+input WebAddress {
+	endPoint: String!
+}
+
+type WebContent {
+	id: ID!
+	description: String!
+	fileLocation: String!
+}
+
 
 input NewUserLogin {
 	userId: String!

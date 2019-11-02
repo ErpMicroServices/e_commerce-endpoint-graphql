@@ -10,6 +10,7 @@ type Mutation {
 }
 
 type Query {
+	contentForWebAddress(webAddress: WebAddress!): [WebContent]!
 	userById(id: ID!): UserLogin
 }
 
@@ -19,7 +20,17 @@ type UserLogin {
 	userId: String!
 }
 
+type WebContent {
+	description: String!
+	fileLocation: String!
+	id: ID!
+}
+
 input NewUserLogin {
 	password: String!
 	userId: String!
+}
+
+input WebAddress {
+	endPoint: String!
 }
