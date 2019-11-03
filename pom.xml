@@ -26,10 +26,10 @@
 			<groupId >org.springframework.boot</groupId >
 			<artifactId >spring-boot-starter-actuator</artifactId >
 		</dependency >
-		<!--        <dependency>-->
-		<!--            <groupId>org.springframework.boot</groupId>-->
-		<!--            <artifactId>spring-boot-starter-data-jpa</artifactId>-->
-		<!--        </dependency>-->
+		<dependency >
+			<groupId >org.springframework.boot</groupId >
+			<artifactId >spring-boot-starter-data-jpa</artifactId >
+		</dependency >
 		<dependency >
 			<groupId >org.springframework.boot</groupId >
 			<artifactId >spring-boot-starter-web</artifactId >
@@ -44,23 +44,30 @@
 			<artifactId >graphql-java-tools</artifactId >
 			<version >${graphql-java-tools.version}</version >
 		</dependency >
-		<!--		<dependency >-->
-		<!--			<groupId >org.springframework.boot</groupId >-->
-		<!--			<artifactId >spring-boot-starter-test</artifactId >-->
-		<!--			<scope >test</scope >-->
-		<!--			<exclusions >-->
-		<!--				<exclusion >-->
-		<!--					<groupId >org.junit.vintage</groupId >-->
-		<!--					<artifactId >junit-vintage-engine</artifactId >-->
-		<!--				</exclusion >-->
-		<!--			</exclusions >-->
-		<!--		</dependency >-->
+		<dependency >
+			<groupId >org.springframework.boot</groupId >
+			<artifactId >spring-boot-starter-test</artifactId >
+			<scope >test</scope >
+			<exclusions >
+				<exclusion >
+					<groupId >org.junit.vintage</groupId >
+					<artifactId >junit-vintage-engine</artifactId >
+				</exclusion >
+			</exclusions >
+		</dependency >
+		<!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
+		<dependency >
+			<groupId >org.postgresql</groupId >
+			<artifactId >postgresql</artifactId >
+			<version >42.2.8</version >
+		</dependency >
 	</dependencies >
 	<build >
 		<plugins >
 			<plugin >
 				<groupId >org.springframework.boot</groupId >
 				<artifactId >spring-boot-maven-plugin</artifactId >
+
 			</plugin >
 		</plugins >
 	</build >

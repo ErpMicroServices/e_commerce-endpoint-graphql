@@ -2,8 +2,10 @@ package erp_microservices.e_commerce.endpoints.graphql;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 
 
+@ComponentScan(basePackages = {"erp_microservices.e_commerce.endpoints", "erp_microservices.e_commerce.endpoints.graphql.models", "erp_microservices.e_commerce.endpoints.graphql.repositories"})
 @SpringBootApplication
 public class Application {
 
@@ -12,17 +14,4 @@ public class Application {
 		SpringApplication.run(Application.class, args);
 	}
 
-//	@Bean
-//	GraphQLSchema schema() {
-//		return GraphQLSchema.newSchema()
-//				       .query(GraphQLObjectType.newObject()
-//						              .name("query")
-//						              .field(field -> field
-//								                              .name("test")
-//								                              .type(Scalars.GraphQLString)
-//								                              .dataFetcher(environment -> "response")
-//						              )
-//						              .build())
-//				       .build();
-//	}
 }

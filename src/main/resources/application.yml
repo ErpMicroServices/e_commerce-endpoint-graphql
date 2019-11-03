@@ -1,6 +1,11 @@
-#spring:
-#  application:
-#    name: e_commerce-service-endpoint-graphql
+spring:
+  application:
+    name: e_commerce-service-endpoint-graphql
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    username: e_commerce
+    password: e_commerce
+    url: jdbc:postgresql://localhost/e_commerce
 graphql:
   servlet:
     exception-handlers-enabled: true
