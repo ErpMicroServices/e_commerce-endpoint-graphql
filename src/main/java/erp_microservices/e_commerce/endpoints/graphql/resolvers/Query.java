@@ -1,9 +1,9 @@
 package erp_microservices.e_commerce.endpoints.graphql.resolvers;
 
 import com.coxautodev.graphql.tools.GraphQLQueryResolver;
-import erp_microservices.e_commerce.endpoints.graphql.repositories.WebContentRepository;
 import erp_microservices.e_commerce.endpoints.graphql.types.UserLogin;
 import erp_microservices.e_commerce.endpoints.graphql.types.WebContent;
+import erp_microservices.e_commerce.endpoints.repositories.WebContentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
