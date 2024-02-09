@@ -17,8 +17,14 @@ type WebContent {
 	id: ID!
 	description: String!
 	fileLocation: String!
+	association: [WebContentAssociation!]!
 }
 
+type WebContentAssociation {
+	id: ID!
+	upper_left_coordinate: String!
+	associate_for: WebContent!
+}
 
 input NewUserLogin {
 	userId: String!

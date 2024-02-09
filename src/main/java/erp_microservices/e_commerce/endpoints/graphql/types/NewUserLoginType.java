@@ -2,14 +2,14 @@ package erp_microservices.e_commerce.endpoints.graphql.types;
 
 import java.util.Objects;
 
-public class NewUserLogin {
+public class NewUserLoginType {
 	private String userId = "";
 	private String password = "";
 
-	public NewUserLogin() {
+	public NewUserLoginType() {
 	}
 
-	public NewUserLogin(final String userId, final String password) {
+	public NewUserLoginType(final String userId, final String password) {
 		assert userId != null : "userId cannot be null";
 		assert password != null : "password cannot be null";
 		this.userId = userId;
@@ -35,8 +35,8 @@ public class NewUserLogin {
 	@Override
 	public boolean equals(final Object o) {
 		if (this == o) return true;
-		if (!(o instanceof NewUserLogin)) return false;
-		final NewUserLogin that = (NewUserLogin) o;
+		if (!(o instanceof NewUserLoginType)) return false;
+		final NewUserLoginType that = (NewUserLoginType) o;
 		return getUserId().equals(that.getUserId()) &&
 				       getPassword().equals(that.getPassword());
 	}

@@ -2,12 +2,12 @@ package erp_microservices.e_commerce.endpoints.graphql.types;
 
 import java.util.Objects;
 
-public class UserLogin {
+public class UserLoginType {
 	private long id;
 	private boolean active;
 	private String userId;
 
-	public UserLogin(final long id, final boolean active, final String userId) {
+	public UserLoginType(final long id, final boolean active, final String userId) {
 		this.id = id;
 		this.active = active;
 		this.userId = userId;
@@ -16,8 +16,8 @@ public class UserLogin {
 	@Override
 	public boolean equals(final Object o) {
 		if (this == o) return true;
-		if (!(o instanceof UserLogin)) return false;
-		final UserLogin userLogin = (UserLogin) o;
+		if (!(o instanceof UserLoginType)) return false;
+		final UserLoginType userLogin = (UserLoginType) o;
 		return getId() == userLogin.getId();
 	}
 

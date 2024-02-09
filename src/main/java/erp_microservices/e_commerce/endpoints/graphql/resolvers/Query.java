@@ -1,8 +1,8 @@
 package erp_microservices.e_commerce.endpoints.graphql.resolvers;
 
 import com.coxautodev.graphql.tools.GraphQLQueryResolver;
-import erp_microservices.e_commerce.endpoints.graphql.types.UserLogin;
-import erp_microservices.e_commerce.endpoints.graphql.types.WebContent;
+import erp_microservices.e_commerce.endpoints.graphql.types.UserLoginType;
+import erp_microservices.e_commerce.endpoints.graphql.types.WebContentType;
 import erp_microservices.e_commerce.endpoints.repositories.WebContentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -17,13 +17,12 @@ public class Query implements GraphQLQueryResolver {
 	@Autowired
 	private WebContentRepository webContentRepository;
 
-	public UserLogin userById(long id) {
-		return new UserLogin(id, true, "ChesterTester");
+	public UserLoginType userById(long id) {
+		return new UserLoginType(id, true, "ChesterTester");
 	}
 
-	public List<WebContent> contentForWebAddress(UUID webAddressId) {
-		System.out.println("Hello world");
-		final List<WebContent> collect = webContentRepository.findByWebAddressId(webAddressId).stream().map(webContent -> new WebContent(webContent.getId(), webContent.getContentDescription(), webContent.getFileLocation())).collect(Collectors.toList());
+	public List<WebContentType> contentForWebAddress(UUID webAddressId) {
+		final List<WebContentType> collect = webContentRepository.findByWebAddressId(webAddressId).stream().map(webContent -> new WebContentType(webContent.getId(), webContent.getContentDescription(), webContent.getFileLocation())).collect(Collectors.toList());
 		return collect;
 	}
 }

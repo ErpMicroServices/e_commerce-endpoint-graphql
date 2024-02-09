@@ -4,15 +4,15 @@ import java.net.URI;
 import java.util.Objects;
 import java.util.UUID;
 
-public class WebContent {
+public class WebContentType {
 	private UUID id;
 	private String description;
 	private URI fileLocation;
 
-	public WebContent() {
+	public WebContentType() {
 	}
 
-	public WebContent(final UUID id, final String description, final URI fileLocation) {
+	public WebContentType(final UUID id, final String description, final URI fileLocation) {
 		this.id = id;
 		this.description = description;
 		this.fileLocation = fileLocation;
@@ -45,8 +45,8 @@ public class WebContent {
 	@Override
 	public boolean equals(final Object o) {
 		if (this == o) return true;
-		if (!(o instanceof WebContent)) return false;
-		final WebContent that = (WebContent) o;
+		if (!(o instanceof WebContentType)) return false;
+		final WebContentType that = (WebContentType) o;
 		return Objects.equals(getId(), that.getId()) &&
 				       Objects.equals(getDescription(), that.getDescription()) &&
 				       Objects.equals(getFileLocation(), that.getFileLocation());

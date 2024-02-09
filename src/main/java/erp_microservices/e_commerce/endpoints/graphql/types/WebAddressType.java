@@ -2,14 +2,14 @@ package erp_microservices.e_commerce.endpoints.graphql.types;
 
 import java.util.Objects;
 
-public class WebAddress {
+public class WebAddressType {
 
 	private String endPoint = "";
 
-	public WebAddress() {
+	public WebAddressType() {
 	}
 
-	public WebAddress(final String endPoint) {
+	public WebAddressType(final String endPoint) {
 		this.endPoint = endPoint;
 	}
 
@@ -24,8 +24,8 @@ public class WebAddress {
 	@Override
 	public boolean equals(final Object o) {
 		if (this == o) return true;
-		if (!(o instanceof WebAddress)) return false;
-		final WebAddress that = (WebAddress) o;
+		if (!(o instanceof WebAddressType)) return false;
+		final WebAddressType that = (WebAddressType) o;
 		return Objects.equals(getEndPoint(), that.getEndPoint());
 	}
 
