@@ -6,7 +6,7 @@ toolchain go1.23.5
 
 require (
 	github.com/99designs/gqlgen v0.17.78
-	github.com/go-chi/chi/v5 v5.0.12
+	github.com/go-chi/chi/v5 v5.2.2
 )
 
 // require (
