@@ -1,0 +1,40 @@
+# E-commerce GraphQL API Configuration Example
+
+server:
+  port: 8080
+  enable_playground: true
+  read_timeout: 15s
+  write_timeout: 15s
+  idle_timeout: 60s
+  shutdown_timeout: 5s
+
+database:
+  host: localhost
+  port: 5432
+  name: e_commerce_db
+  user: e_commerce_user
+  password: e_commerce_password
+  ssl_mode: disable
+
+redis:
+  addr: localhost:6379
+  password: ""
+  db: 0
+
+auth:
+  jwt_secret: your-secret-key-change-in-production
+  token_expiration: 24h
+  refresh_expiration: 168h # 7 days
+
+cors:
+  allowed_origins:
+    - http://localhost:3000
+    - http://localhost:8080
+
+log:
+  level: info
+  format: json
+
+session:
+  secret: your-session-secret-change-in-production
+  max_age: 24h

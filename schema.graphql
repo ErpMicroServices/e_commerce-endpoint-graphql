@@ -1,36 +1,303 @@
-# This file was generated based on ".graphqlconfig". Do not edit manually.
+# E-commerce GraphQL API Schema
 
-schema {
-	query: Query
-	mutation: Mutation
+type Query {
+	# User and Authentication
+	userById(id: ID!): UserLogin
+	currentUser: UserLogin
+
+	# Web Content Management
+	contentForWebAddress(webAddressId: ID!): [WebContent!]!
+	webContent(id: ID!): WebContent
+	webContentTypes: [WebContentType!]!
+
+	# Shopping Cart
+	shoppingCart: ShoppingCart
+	cartItems: [CartItem!]!
+
+	# Subscriptions
+	userSubscriptions: [Subscription!]!
+	subscription(id: ID!): Subscription
+	subscriptionTypes: [SubscriptionType!]!
+
+	# User Preferences
+	userPreferences: [WebUserPreference!]!
+	preferenceTypes: [WebPreferenceType!]!
+
+	# Web Objects and Content
+	webObjects(filter: WebObjectFilter): [WebObject!]!
+	webObject(id: ID!): WebObject
 }
 
 type Mutation {
-	login(credentials: NewUserLogin!): UserLogin
+	# Authentication
+	login(credentials: NewUserLogin!): AuthPayload!
+	logout: Boolean!
+	register(input: RegisterInput!): AuthPayload!
+
+	# Shopping Cart
+	addToCart(input: AddToCartInput!): CartItem!
+	updateCartItem(input: UpdateCartItemInput!): CartItem!
+	removeFromCart(cartItemId: ID!): Boolean!
+	clearCart: Boolean!
+
+	# Subscriptions
+	createSubscription(input: CreateSubscriptionInput!): Subscription!
+	updateSubscription(input: UpdateSubscriptionInput!): Subscription!
+	cancelSubscription(id: ID!): Boolean!
+
+	# User Preferences
+	setUserPreference(input: SetUserPreferenceInput!): WebUserPreference!
+	deleteUserPreference(id: ID!): Boolean!
+
+	# Web Content Management (admin)
+	createWebContent(input: CreateWebContentInput!): WebContent!
+	updateWebContent(input: UpdateWebContentInput!): WebContent!
+	deleteWebContent(id: ID!): Boolean!
 }
 
-type Query {
-	contentForWebAddress(webAddress: WebAddress!): [WebContent]!
-	userById(id: ID!): UserLogin
-}
+# Types
 
 type UserLogin {
-	active: String!
 	id: ID!
 	userId: String!
+	active: String!
+	partyId: ID
+	webAddressId: ID
+	createdAt: Time!
+}
+
+type AuthPayload {
+	token: String!
+	user: UserLogin!
+	sessionId: String!
 }
 
 type WebContent {
-	description: String!
-	fileLocation: String!
 	id: ID!
+	description: String!
+	fileLocation: String
+	status: WebContentStatusType!
+	webAddress: WebAddress!
+	associations: [WebContentAssociation!]!
+	roles: [WebContentRole!]!
+	createdAt: Time!
+	updatedAt: Time!
 }
+
+type WebContentAssociation {
+	id: ID!
+	upperLeftCoordinate: String
+	functionType: FunctionType
+	associateFor: WebContent!
+	associateOf: WebContent!
+}
+
+type WebContentType {
+	id: ID!
+	description: String!
+	parentId: ID
+	parent: WebContentType
+	children: [WebContentType!]!
+}
+
+type WebContentStatusType {
+	id: ID!
+	description: String!
+	parentId: ID
+	parent: WebContentStatusType
+}
+
+type WebContentRoleType {
+	id: ID!
+	description: String!
+	parentId: ID
+	parent: WebContentRoleType
+}
+
+type WebContentRole {
+	id: ID!
+	activeFrom: Time!
+	activeThru: Time
+	webContent: WebContent!
+	roleType: WebContentRoleType!
+	partyId: ID!
+}
+
+type FunctionType {
+	id: ID!
+	description: String!
+	parentId: ID
+	parent: FunctionType
+}
+
+type WebAddress {
+	id: ID!
+	endPoint: String!
+	contactMechanismId: ID!
+}
+
+type ShoppingCart {
+	sessionId: String!
+	items: [CartItem!]!
+	totalItems: Int!
+	totalAmount: Decimal!
+	createdAt: Time!
+	updatedAt: Time!
+}
+
+type CartItem {
+	id: ID!
+	productId: ID!
+	quantity: Int!
+	unitPrice: Decimal!
+	totalPrice: Decimal!
+	addedAt: Time!
+	updatedAt: Time!
+}
+
+type Subscription {
+	id: ID!
+	startDate: Date!
+	endDate: Date
+	type: SubscriptionType!
+	partyNeed: PartyNeed
+	productId: ID
+	productCategoryId: ID
+	needType: NeedType
+	partyRoleId: ID
+	contactMechanismId: ID
+	communicationEventId: ID
+	isActive: Boolean!
+	createdAt: Time!
+	updatedAt: Time!
+}
+
+type SubscriptionType {
+	id: ID!
+	description: String!
+	parentId: ID
+	parent: SubscriptionType
+}
+
+type PartyNeed {
+	id: ID!
+	description: String!
+	dateIdentified: Date!
+	communicationEventId: ID
+	partyRoleId: ID
+	productCategoryId: ID
+	productId: ID
+	serverHitId: ID
+	type: NeedType!
+}
+
+type NeedType {
+	id: ID!
+	description: String!
+	parentId: ID
+	parent: NeedType
+}
+
+type WebUserPreference {
+	id: ID!
+	value: String
+	userLogin: UserLogin!
+	type: WebPreferenceType!
+	createdAt: Time!
+	updatedAt: Time!
+}
+
+type WebPreferenceType {
+	id: ID!
+	description: String!
+	parentId: ID
+	parent: WebPreferenceType
+	children: [WebPreferenceType!]!
+}
+
+type WebObject {
+	id: ID!
+	name: String!
+	description: String!
+	fileLocation: String
+	type: WebObjectType!
+	createdAt: Time!
+	updatedAt: Time!
+}
+
+type WebObjectType {
+	id: ID!
+	description: String!
+	parentId: ID
+	parent: WebObjectType
+}
+
+# Input Types
 
 input NewUserLogin {
-	password: String!
 	userId: String!
+	password: String!
 }
 
-input WebAddress {
-	endPoint: String!
+input RegisterInput {
+	userId: String!
+	password: String!
+	partyId: ID
 }
+
+input AddToCartInput {
+	productId: ID!
+	quantity: Int!
+	unitPrice: Decimal!
+}
+
+input UpdateCartItemInput {
+	id: ID!
+	quantity: Int!
+}
+
+input CreateSubscriptionInput {
+	startDate: Date!
+	endDate: Date
+	typeId: ID!
+	productId: ID
+	productCategoryId: ID
+	needTypeId: ID
+	partyRoleId: ID
+	contactMechanismId: ID
+}
+
+input UpdateSubscriptionInput {
+	id: ID!
+	endDate: Date
+	typeId: ID
+}
+
+input SetUserPreferenceInput {
+	typeId: ID!
+	value: String!
+}
+
+input CreateWebContentInput {
+	description: String!
+	fileLocation: String
+	statusId: ID!
+	webAddressId: ID!
+}
+
+input UpdateWebContentInput {
+	id: ID!
+	description: String
+	fileLocation: String
+	statusId: ID
+}
+
+input WebObjectFilter {
+	typeId: ID
+	name: String
+}
+
+# Using String scalars for simplicity - can be enhanced later
+scalar Time
+scalar Date  
+scalar Decimal
