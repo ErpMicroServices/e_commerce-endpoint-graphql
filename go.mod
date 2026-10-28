@@ -1,12 +1,10 @@
 module github.com/erpmicroservices/e_commerce-endpoint-graphql
 
-go 1.23.0
-
-toolchain go1.23.5
+go 1.24
 
 require (
 	github.com/99designs/gqlgen v0.17.78
-	github.com/go-chi/chi/v5 v5.0.12
+	github.com/go-chi/chi/v5 v5.4.0
 )
 
 // require (
